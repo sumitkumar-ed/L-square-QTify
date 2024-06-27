@@ -1,57 +1,57 @@
-import React, { useState, useEffect } from "react";
-import { ReactComponent as RightArrow } from "../../assets/RightArrow.svg";
-import { ReactComponent as LeftArrow } from "../../assets/LeftArrow.svg";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Card from "../Card/Card";
 import styles from "./Carousel.module.css";
+import { Navigation } from "swiper/modules";
+import { ReactComponent as RightArrow } from "../../assets/RightArrow.svg";
+import { ReactComponent as LeftArrow } from "../../assets/LeftArrow.svg";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 function Carousel({ albums }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleAlbums, setVisibleAlbums] = useState([]);
+  const swiperRef = React.useRef(null);
 
-  const batchSize = 7; // Number of cards to show in each batch
-
-  useEffect(() => {
-    // Initialize visible albums when component mounts
-    updateVisibleAlbums();
-  }, []);
-
-  useEffect(() => {
-    // Update visible albums whenever currentIndex changes
-    updateVisibleAlbums();
-  }, [currentIndex]);
-
-  const updateVisibleAlbums = () => {
-    const start = currentIndex * batchSize;
-    const end = start + batchSize;
-    setVisibleAlbums(albums.slice(start, end));
-  };
-
-  const nextSlide = () => {
-    if (currentIndex < Math.ceil(albums.length / batchSize) - 1) {
-      setCurrentIndex((prevIndex) => prevIndex + 1);
+  const goNext = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
     }
   };
 
-  const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevIndex) => prevIndex - 1);
+  const goPrev = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
     }
   };
 
   return (
     <div className={styles.carousel}>
       <div className={styles.controls}>
-        <div className={`${styles.arrow} ${styles.left}`} onClick={prevSlide}>
+        <div className={`${styles.arrow} ${styles.left}`} onClick={goPrev}>
           <LeftArrow />
         </div>
-        <div className={styles.albumGrid}>
-          {visibleAlbums.map((album) => (
-            <div key={album.id} className={styles.album}>
-              <Card album={album} />
-            </div>
+        <Swiper
+          slidesPerView={7}
+          spaceBetween={30}
+          navigation={{
+            prevEl: `.${styles.left}`,
+            nextEl: `.${styles.right}`,
+          }}
+          modules={[Navigation]}
+          className="mySwiper"
+          ref={swiperRef}
+        >
+          {albums.map((album) => (
+            <SwiperSlide key={album.id}>
+              <div className={styles.album}>
+                <Card album={album} />
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
-        <div className={`${styles.arrow} ${styles.right}`} onClick={nextSlide}>
+        </Swiper>
+        <div className={`${styles.arrow} ${styles.right}`} onClick={goNext}>
           <RightArrow />
         </div>
       </div>
