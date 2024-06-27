@@ -37,6 +37,6 @@
 .searchDivider {
   height: 24px; /* Adjust height as needed */
   width: 1px;
-  background-color: black;
+  background-color: var(--color-black);
   margin-right: 10px; /* Adjust spacing as needed */
 }

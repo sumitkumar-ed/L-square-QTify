@@ -3,7 +3,7 @@ import './App.css';
 import NavBar from './components/NavBar/Navbar'
 // import { useState } from 'react';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
-// import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 // import { fetchNewAlbums, fetchSongs, fetchTopAlbums } from "./api/api";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
     <>
       <StyledEngineProvider injectFirst>
         <NavBar />
+        <Outlet />
         {/* <Outlet context={{ data: {topAlbums, newAlbums, songs} }} /> */}
       </StyledEngineProvider>
     </>
