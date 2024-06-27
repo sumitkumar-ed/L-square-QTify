@@ -1,13 +1,14 @@
 import React from "react";
 import Hero from "../../components/Hero/Hero";
+import Section from "../../components/Section/Section";
 import heroImage from "../../assets/hero_headphones.png";
 
-function HomePage() {
-  const heroTexts = [
-    "100 Thousand songs, ad-free",
-    "Over thousands podcast episodes",
-  ];
+const heroTexts = [
+  "100 Thousand songs, ad-free",
+  "Over thousands podcast episodes",
+];
 
+function HomePage() {
   return (
     <div>
       <Hero
@@ -16,6 +17,8 @@ function HomePage() {
         imageAlt="headphones"
         imageWidth={212}
       />
+      <Section title="Top Albums" type="top" />
+      <Section title="New Albums" type="new" />
     </div>
   );
 }

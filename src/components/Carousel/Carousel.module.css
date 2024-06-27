@@ -1,0 +1,50 @@
+.carousel {
+  color: var(--color-white);
+  padding: 20px;
+  background-color: var(--color-black);
+  overflow: hidden; /* Hide overflow to prevent unnecessary scrollbars */
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  position: relative;
+}
+
+.albumGrid {
+  display: flex;
+  gap: 25px;
+  padding-bottom: 10px;
+  overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+.album {
+  flex: 0 0 auto;
+  width: 150px; /* Adjust based on your card width */
+  transition: transform 0.3s ease-in-out;
+}
+
+.arrow {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow.left {
+  left: 10px; /* Adjust the distance from the left edge */
+}
+
+.arrow.right {
+  right: 10px; /* Adjust the distance from the right edge */
+}
+
+.arrow svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-primary); /* Adjust arrow color */
+}
