@@ -1,24 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+// import HomePage from './pages/HomePage/HomePage'
+import NavBar from './components/NavBar/Navbar'
+// import { useState } from 'react';
+import StyledEngineProvider from "@mui/material/StyledEngineProvider";
+// import { Outlet } from "react-router-dom";
+// import { fetchNewAlbums, fetchSongs, fetchTopAlbums } from "./api/api";
 
 function App() {
+  // const [data, setData] = useState{()};
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edited <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <StyledEngineProvider injectFirst>
+        <NavBar />
+        {/* <Outlet context={{ data: {topAlbums, newAlbums, songs} }} /> */}
+      </StyledEngineProvider>
+    </>
   );
 }
 
