@@ -6,7 +6,7 @@ import styles from "./Section.module.css";
 
 function Section({ title, type }) {
   const [albums, setAlbums] = useState([]);
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState(true);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
