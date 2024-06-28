@@ -112,7 +112,7 @@ function Section({ title, type, isSongsSection }) {
                 <Card
                   key={item.id}
                   album={item}
-                  isSongsSection={item.likes}
+                  isSongsSection={true}
                 />
               ))}
             </div>

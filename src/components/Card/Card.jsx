@@ -1,18 +1,28 @@
 import React from "react";
-import { Chip } from "@mui/material";
+import { Chip, Tooltip } from "@mui/material";
 import styles from "./Card.module.css";
 
 function Card({ album, isSongsSection }) {
+  const songsCount = album.songs && album.songs.length;
+
   console.log("isSongsSection in Card:", isSongsSection, album.likes);
 
   return (
     <div className={styles.cardContainer}>
       <div className={styles.card}>
-        <img
-          src={album.image || ""}
-          alt={album.title || "No title"}
-          className={styles.albumImage}
-        />
+      <Tooltip
+            title={songsCount !== undefined ? `${songsCount} songs` : ""}
+            placement="top"
+          >
+          {" "}
+          {/* Tooltip for songs count */}
+          <img
+            src={album.image || ""}
+            alt={album.title || "No title"}
+            className={styles.albumImage}
+          />
+        </Tooltip>
+
         <div className={styles.albumInfo}>
           {/* <Chip
             label={
