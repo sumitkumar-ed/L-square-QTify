@@ -7,7 +7,7 @@ import styles from './Navbar.module.css';
 
 const searchData = (query) => {
   // Implement your search logic here
-  console.log(`Searching for: ${query}`);
+  // console.log(`Searching for: ${query}`);
 };
 
 function Navbar() {

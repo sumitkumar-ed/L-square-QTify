@@ -19,7 +19,6 @@ export const fetchSongs = async (genre) => {
     const data = response.data;
     const filteredSongs =
       genre === "all" ? data : data.filter((song) => song.genre.key === genre);
-      console.log(filteredSongs);
     return filteredSongs;
   } catch (error) {
     console.error("Error fetching songs:", error);

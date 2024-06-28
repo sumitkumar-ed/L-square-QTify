@@ -32,15 +32,17 @@ function Section({ title, type, isSongsSection }) {
     const fetchGenres = async () => {
       if (isSongsSection) {
         try {
-          const response = await fetch('https://qtify-backend-labs.crio.do/genres');
+          const response = await fetch(
+            "https://qtify-backend-labs.crio.do/genres"
+          );
           const genresData = await response.json();
           if (Array.isArray(genresData.data)) {
             setGenres([{ key: "all", label: "All" }, ...genresData.data]);
           } else {
-            console.error('Genres data is not an array');
+            console.error("Genres data is not an array");
           }
         } catch (error) {
-          console.error('Error fetching genres:', error);
+          console.error("Error fetching genres:", error);
         }
       }
     };
@@ -57,8 +59,8 @@ function Section({ title, type, isSongsSection }) {
     setGenre(newGenre);
   };
 
-// Inside the Section component
-const filteredItems = genre === "all" ? items : items.filter(song => song.genre.key === genre);
+  const filteredItems =
+    genre === "all" ? items : items.filter((song) => song.genre.key === genre);
 
   return (
     <div className={styles.section}>
@@ -93,7 +95,7 @@ const filteredItems = genre === "all" ? items : items.filter(song => song.genre.
                 fontSize: "12px",
                 fontWeight: "bold",
                 "&.Mui-selected": {
-                  color: "white", // Active tab font color
+                  color: "white",
                 },
               }}
               className={styles.genreTab}
@@ -107,7 +109,11 @@ const filteredItems = genre === "all" ? items : items.filter(song => song.genre.
           {showAll && !isSongsSection ? (
             <div className={`${styles.albumGrid} ${styles.showGrid}`}>
               {filteredItems.map((item) => (
-                <Card key={item.id} album={item} isSongsSection={isSongsSection} />
+                <Card
+                  key={item.id}
+                  album={item}
+                  isSongsSection={item.likes}
+                />
               ))}
             </div>
           ) : (
