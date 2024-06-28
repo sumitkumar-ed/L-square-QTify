@@ -11,8 +11,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+// Custom hook to generate unique ID
+const useUniqueId = () => {
+  return React.useMemo(() => `carousel-${Math.random().toString(36).substr(2, 9)}`, []);
+};
+
 function Carousel({ albums }) {
   const swiperRef = React.useRef(null);
+  const uniqueId = useUniqueId();
 
   const goNext = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -29,15 +35,15 @@ function Carousel({ albums }) {
   return (
     <div className={styles.carousel}>
       <div className={styles.controls}>
-        <div className={`${styles.arrow} ${styles.left}`} onClick={goPrev}>
+        <div className={`${styles.arrow} ${styles.left} ${uniqueId}-left`} onClick={goPrev}>
           <LeftArrow />
         </div>
         <Swiper
           slidesPerView={7}
           spaceBetween={30}
           navigation={{
-            prevEl: `.${styles.left}`,
-            nextEl: `.${styles.right}`,
+            prevEl: `.${uniqueId}-left`,
+            nextEl: `.${uniqueId}-right`,
           }}
           modules={[Navigation]}
           className="mySwiper"
@@ -51,7 +57,7 @@ function Carousel({ albums }) {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className={`${styles.arrow} ${styles.right}`} onClick={goNext}>
+        <div className={`${styles.arrow} ${styles.right} ${uniqueId}-right`} onClick={goNext}>
           <RightArrow />
         </div>
       </div>
