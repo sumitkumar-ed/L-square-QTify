@@ -19,6 +19,7 @@ function HomePage() {
       />
       <Section title="Top Albums" type="top" />
       <Section title="New Albums" type="new" />
+      <Section title="Songs" type="all" isSongsSection />
     </div>
   );
 }
